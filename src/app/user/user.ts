@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { USERS } from '../fake_users';
 
 @Component({
   selector: 'app-user',
@@ -7,5 +8,18 @@ import { Component } from '@angular/core';
   styleUrl: './user.css'
 })
 export class User {
+
+
+  selectedUser = USERS[0];
+
+  get userImgPath() {
+    return 'assets/users/' + this.selectedUser.avatar;
+  }
+
+  changeUser() {
+    const randomlndex = Math.floor(Math.random() * USERS.length);
+    this.selectedUser = USERS[randomlndex];
+  }
+
 
 }

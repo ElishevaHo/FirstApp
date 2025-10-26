@@ -1,7 +1,8 @@
 <div>
-<button>
-<img>
-<span>User</span>
-</button>
-</div>
+    <button (click)="changeUser()">
+        <img [src]="userImgPath">
+        <span>{{selectedUser.name}}</span>
 
+    </button>
+
+</div>
