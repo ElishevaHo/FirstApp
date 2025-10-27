@@ -14,5 +14,5 @@ import { USERS } from './fake_users';
 export class App {
   protected readonly title = signal('firstApp');
   users = USERS;
-  //  user = USERS[0]; // לדוגמה, המשתמש הראשון במערך
+
 }
