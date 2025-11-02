@@ -1,10 +1,25 @@
 <app-header></app-header>
 <main>
-<ul id="users">
-<li>
+    <ul id="users">
 
-<app-user [name]="users[0].name" [avatar]="'assets/users/' + users[0].avatar"></app-user>
-<app-user [name]="users[1].name" [avatar]="'assets/users/' + users[1].avatar"></app-user>
-</li>
-</ul>
+        <li>
+            <app-user [name]="users[0].name" [avatar]="'assets/users/' + users[0].avatar" [id]="users[0].id" (userClicked)="onUserSelected($event)" ></app-user>
+        </li>
+
+        <li>
+            <app-user [name]="users[1].name" [avatar]="'assets/users/' + users[1].avatar" [id]="users[1].id" (userClicked)="onUserSelected($event)" ></app-user>
+        </li>
+    
+    </ul>
+    
+    <p ngIf="selectedUser">👤 נבחר המשתמש: {{ selectedUser.name }}</p>
+
+  <!-- @if (selectedUser){
+    <app-user [userName]="selectedUser.name" [userId]="selectedUser.id"></app-user>
+ } @else {
+    <p>Please select a user to view their tasks.</p>
+ } -->
+
+
 </main>
+

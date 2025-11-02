@@ -1,4 +1,4 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, input, Input, Output, EventEmitter } from '@angular/core';
 import { USERS } from '../fake_users';
 
 @Component({
@@ -12,8 +12,17 @@ export class User {
 
 
   selectedUser = USERS[0];
-  @Input() name!: string;
+  @Input({ required: true }) name!: string;
   @Input() avatar!: string;
+  @Input({ required: true }) id!: string;
+  
+  @Output() userClicked = new EventEmitter<string>();
+
+
+  onUserClicked() {
+    this.userClicked.emit(this.id);
+  }
+
 
   get userImgPath() {
     return 'assets/users/' + this.selectedUser.avatar;
