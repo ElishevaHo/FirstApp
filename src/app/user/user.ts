@@ -15,6 +15,7 @@ export class User {
   @Input({ required: true }) name!: string;
   @Input() avatar!: string;
   @Input({ required: true }) id!: string;
+  @Input({ required: true }) isSelected!: boolean;
   
   @Output() userClicked = new EventEmitter<string>();
 

@@ -1,25 +1,23 @@
 <app-header></app-header>
 <main>
+
     <ul id="users">
-
+        @for(user of users; track user.id){
         <li>
-            <app-user [name]="users[0].name" [avatar]="'assets/users/' + users[0].avatar" [id]="users[0].id" (userClicked)="onUserSelected($event)" ></app-user>
+            <app-user [name]="user.name" [avatar]="'assets/users/' + user.avatar" [id]="user.id"
+                [isSelected]="user.id===selectedUser?.id" (userClicked)="onUserSelected($event)"></app-user>
         </li>
-
-        <li>
-            <app-user [name]="users[1].name" [avatar]="'assets/users/' + users[1].avatar" [id]="users[1].id" (userClicked)="onUserSelected($event)" ></app-user>
-        </li>
-    
+        <br>
+        }
     </ul>
-    
-    <p ngIf="selectedUser">👤 נבחר המשתמש: {{ selectedUser.name }}</p>
 
-  <!-- @if (selectedUser){
-    <app-user [userName]="selectedUser.name" [userId]="selectedUser.id"></app-user>
- } @else {
-    <p>Please select a user to view their tasks.</p>
- } -->
+    @if(selectedUser){
+
+    <app-tasks [userName]="selectedUser.name"></app-tasks>
+}@else{
+    <p>Please select a user </p>
+    }
+
 
 
 </main>
-
