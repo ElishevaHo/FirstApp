@@ -4,7 +4,7 @@
     <ul id="users">
         @for(user of users; track user.id){
         <li>
-            <app-user [name]="user.name" [avatar]="'assets/users/' + user.avatar" [id]="user.id"
+            <app-user [user]="user"
                 [isSelected]="user.id===selectedUser?.id" (userClicked)="onUserSelected($event)"></app-user>
         </li>
         <br>
@@ -13,7 +13,7 @@
 
     @if(selectedUser){
 
-    <app-tasks [userName]="selectedUser.name"></app-tasks>
+    <app-tasks [userId]="selectedUser.id" [userName]="selectedUser.name"></app-tasks>
 }@else{
     <p>Please select a user </p>
     }

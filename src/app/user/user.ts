@@ -1,5 +1,6 @@
 import { Component, input, Input, Output, EventEmitter } from '@angular/core';
 import { USERS } from '../fake_users';
+import { UserObj } from './user.model';
 
 @Component({
   selector: 'app-user',
@@ -12,16 +13,15 @@ export class User {
 
 
   selectedUser = USERS[0];
-  @Input({ required: true }) name!: string;
-  @Input() avatar!: string;
-  @Input({ required: true }) id!: string;
+
+  @Input({ required: true }) user!: UserObj;
   @Input({ required: true }) isSelected!: boolean;
   
   @Output() userClicked = new EventEmitter<string>();
 
 
   onUserClicked() {
-    this.userClicked.emit(this.id);
+    this.userClicked.emit(this.user.id);
   }
 
 
