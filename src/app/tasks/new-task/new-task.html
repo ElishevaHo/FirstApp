@@ -4,19 +4,56 @@
 <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
 <p>
 <label for="title">Title</label>
-<input type="text" id="title" [(ngModel)]="title" name="title"/>
+<input type="text" id="title" [(ngModel)]="title" name="title" required maxlength="18" #formTitle="ngModel"/>
 </p>
+<div *ngIf="formSummary.invalid && formSummary.touched" class="error-messages">
+      <p *ngIf="formSummary.errors?.['required']">Summary is required.</p>
+      <p *ngIf="formSummary.errors?.['maxlength']">Summary cannot exceed 50 characters.</p>
+    </div>
+
+
 <p>
 <label for="summary">Summary</label>
-<textarea id="summary" rows="5" [(ngModel)]="summary" name="summary"></textarea>
+<textarea id="summary" rows="5" [(ngModel)]="summary" name="summary" required maxlength="50" #formSummary="ngModel"></textarea>
 </p>
+    <div *ngIf="formSummary.invalid && formSummary.touched" class="error-messages"> 
+        <p *ngIf="formSummary.errors?.['required']">Summary is required.</p>
+        <p *ngIf="formSummary.errors?.['maxlength']">Summary cannot exceed 50 characters.</p>       
+    </div>
+
 <p>
 <label for="due-date">Due Date</label>
-<input type="date" id="due-date" ngModel="due-date" name="due-date"/>
+<input type="date" id="due-date" ngModel="due-date" name="due-date" required #formDueDate="ngModel" />
 </p>
+    <div *ngIf="formDueDate.invalid && formDueDate.touched" class="error-messages">
+        <p *ngIf="formDueDate.errors?.['required']">Due Date is required.</p>
+    </div>
+
 <p class="actions">
 <button type="button">Cancel</button>
-<button type="submit">Create</button>
+<button type="submit" [disabled]="!taskForm.valid">Create</button>
 </p>
 </form>
+
+
 </dialog>
+
+
+<!-- 
+
+@if="formTitle.invalid && formTitle.touched">
+    <div class="error-messages">
+        <p *ngIf="formTitle.errors?.['required']">Title is required.</p>
+        <p *ngIf="formTitle.errors?.['maxlength']">Title cannot exceed 18 characters.</p>
+    </div>
+
+@if="formSummary.invalid && formSummary.touched">
+    <div class="error-messages">
+        <p *ngIf="formSummary.errors?.['required']">Summary is required.</p>
+        <p *ngIf="formSummary.errors?.['maxlength']">Summary cannot exceed 50 characters.</p>   
+    </div>
+@if="formDueDate.invalid && formDueDate.touched">
+    <div class="error-messages">
+        <p *ngIf="formDueDate.errors?.['required']">Due Date is required.</p>
+    </div>
+ -->

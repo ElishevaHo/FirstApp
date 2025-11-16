@@ -44,7 +44,12 @@
   }
   
   input.ng-invalid.ng-touched {
-      border: 1px solid red;
+      border: 2px solid red;
+  }
+
+  .ng-pristine.ng-valid.ng-touched{
+            border: 2px solid red;
+
   }
   
   .error-messages{
