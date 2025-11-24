@@ -5,4 +5,62 @@
 <img src="assets/logo.svg" alt="Logo Icon" />
 <h1>Chedva's site</h1>
 <p>Welcome to Chedva's task managment site!</p>
+<button (click)="openDialog()">Contact Us</button>
+
+
+@if (showDialog) {
+  
+  <div class="overlay" (click)="cancel()"></div>
+
+  <div class="dialog">
+    <h2>Contact Us</h2>
+
+    <form [formGroup]="contactForm">
+
+      <label>שם:</label>
+      <input type="text"
+             formControlName="name"
+             [ngClass]="{ 'invalid': contactForm.get('name')?.invalid && contactForm.get('name')?.touched }">
+
+      @if (contactForm.get('name')?.errors?.['required'] && contactForm.get('name')?.touched) {
+        <p class="error">שדה זה הוא חובה</p>
+      }
+      @if (contactForm.get('name')?.errors?.['maxlength'] && contactForm.get('name')?.touched) {
+        <p class="error">עד 18 תווים בלבד</p>
+      }
+
+      <label>אימייל:</label>
+      <input type="email"
+             formControlName="email"
+             [ngClass]="{ 'invalid': contactForm.get('email')?.invalid && contactForm.get('email')?.touched }">
+
+      @if (contactForm.get('email')?.errors?.['required'] && contactForm.get('email')?.touched) {
+        <p class="error">שדה חובה</p>
+      }
+      @if (contactForm.get('email')?.errors?.['email'] && contactForm.get('email')?.touched) {
+        <p class="error">כתובת אימייל לא תקינה</p>
+      }
+
+      <label>נושא:</label>
+      <input type="text"
+             formControlName="subject"
+             [ngClass]="{ 'invalid': contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched }">
+
+      @if (contactForm.get('subject')?.errors?.['maxlength'] && contactForm.get('subject')?.touched) {
+        <p class="error">עד 50 תווים בלבד</p>
+      }
+
+      <label>הודעה:</label>
+      <textarea rows="4" formControlName="message"></textarea>
+
+      <div class="btns">
+        <button type="button" (click)="send()">Send</button>
+        <button type="button" (click)="cancel()">Cancel</button>
+      </div>
+
+    </form>
+
+  </div>
+}
 </header>
+
