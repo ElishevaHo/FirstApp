@@ -1,9 +1,18 @@
+
 <div>
     <button [class.active]="isSelected" (click)="onUserClicked()" >
         <img [src]="user.avatar">
         <span>{{user.name}}</span>
-<!-- User Status: active -->
     </button>
-
 </div>
+<!-- 
+<button (click)="openAddUser()">Add User</button>
 
+@if (showAddUser) {
+  <div class="overlay" (click)="closeAddUser()"></div>
+
+  <app-new-user 
+      (cancel)="closeAddUser()"
+      (submitUser)="addUser($event)">
+  </app-new-user>
+} -->

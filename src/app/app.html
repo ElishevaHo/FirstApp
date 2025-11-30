@@ -1,4 +1,10 @@
 <app-header></app-header>
+
+<div class="actions">
+<button (click)="toggleAddUser()">Add User</button>
+</div>
+@if(isAddingUser){
+<app-new-user ></app-new-user>}
 <main>
 
     <ul id="users">

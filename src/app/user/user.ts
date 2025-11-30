@@ -1,11 +1,12 @@
 import { Component, input, Input, Output, EventEmitter } from '@angular/core';
 import { USERS } from '../fake_users';
 import { UserObj } from './user.model';
+import { NewUser } from './new-user/new-user';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [User],
+  imports: [User,NewUser],
   templateUrl: './user.html',
   styleUrl: './user.css'
 })
@@ -13,6 +14,22 @@ export class User {
 
 
   selectedUser = USERS[0];
+  showAddUser=false;
+  
+  users: any =[];
+  
+   openAddUser() {
+    this.showAddUser = true;
+  }
+
+   closeAddUser() {
+    this.showAddUser = false;
+  }
+
+  addUser(user:any) {
+    this.users.push(user);
+    this.closeAddUser();
+  }
 
   @Input({ required: true }) user!: UserObj;
   @Input({ required: true }) isSelected!: boolean;
